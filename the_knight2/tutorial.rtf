@@ -1,0 +1,60 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2820
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 Godot Tutorial\
+\
+Create a folder in lower left where you can put assets. Also make folders for scripts and scenes. Drag assets into folder\
+\
+Create 2d scene and call the node level 1\
+\
+Press plus sign under \'93level1\'94 to create a new scene. This is player scene. Click on plus sign in upper left to create a node, select for character body 2d. Add another node and add animated sprite 2d. Click on animated sprite 2d to bring up inspector on right. Click on animation - empty- new sprite frames.click on grid under animation frames and select the knight sprite sheet. Change grid to 8x8. Click on the frames in the order you would like them to appear. In this case, use idle frames. Hit f to center character. \
+\
+For pixel art, need harder settings. To turn of smoothness, go to preferences, rendering, textures, default texture editor, nearest. Change to 10fps, rename to idle, click on auto-play. Move animation sprite to stand on red line\
+\
+Add collision shape 2d node, select circle and make it fit, probably shouldn\'92t be too big to be more forgiving.\
+\
+Drag player into scene. Add camera 2d node to scene. Change zoom to be 4x4 in inspector and drag camera crosshair on to player.\
+\
+Click on player screen. Click on player node and create script in upper left. Choose character body 2d:basic movement. Need to add scene colider for the player to interact with. Go to game scene, click to 2d, add node static body 2d. Add collision shape 2d node as a child to static body. Choose new world boundary shape 2d. Collider extends infinitely on x axis, although you can change to your axis to.\
+\
+Go into player script and set speed to 130, velocity to -300\
+\
+Worldbuilding\
+\
+Remove collider (static body 2d). Create tile map node. Tile set is the tiles that are used to build world, tilemap is used to place the tiles in the area\
+\
+Create tile map layer. Choose tileset in inspector. Choose tile set at the bottom and drag in tileset assets. Drag in world tileset and say yes to atlas. Automatically creates tiles. File tiles in palm tree to create one big tile. Press erase, click around palm tree. Go out of erase mode. Hold down shift while clicking and dragging around tree. Start painting by clicking tile map layer. Press painter in tile map editor and arrow in upper window. Can select multiple tiles at once.\
+\
+Need to addd physics layer to tile map. Click on tileMapLayer in upper left, then tileSet in upper right.  Click enabled. Choose physics layers. Add element. Then go to tileset at bottom, paint, select property physics layer 0, then paint the tiles that you want to have physics (not trees and such). You can erase by clicking three vertical dots, then reset to tile shape to continue. Some times, the layer needs to be modified as with the bridge. Reset layer in the window. Once you are finished, click on other tiles with the same shape to change (instead to doing it all over again). Need to be precise so that player does not get stuck .\
+\
+Drag tile map to the top so that it is behind the player\
+\
+Drag camera under neath to player to make it a child of the player so that the camera follows player. Click on position smoothing, enabled on right for smoother following.\
+\
+Platforms, create new scene and search for animatable body 2d node. Then sprite 2d, then drag texture that you want. To edit sprite: on left go to region, enabled, edit region. Change snap to pixel snap and crop image. Add collision shape 2d, rectangle and make it fit. Click one-way collision\
+\
+Player (scene), player node, ordering, set z index to 5 to make sure that player is drawn last.\
+\
+For animated platform, drag scene platform into level 1. Select platform 2 and add animation player. Create new animation and name move. Create keyframes with transform. Select loop on end close to trash can. Press it twice to get ping-pong icon. To the left of that, increase number to 1.5 to slow down animation. (I changed easing to -2). Press autoplay next to \'93edit.\'94\
+\
+Coins - new scene, new node area 2d (used to detect collisions), animated sprite, animation, new sprite frames, click on Sprite Frame, grid box in editor, select coin sprite. Set horizontal to 12 (12 frames) and vertical to 1. Set fps to 10 and auto play. Collision shape 2d, circle shape and fit. Move coins from coin scene into timeline.\
+\
+Select coin scene, then coin node and select add script.\
+\
+Signals allow to trigger code for events in the game. If you select area 2d node (coin) and click on node on the right, you can view available signals for a given node. To use a signal, double click on it and hit connect. To make sure only player interacts with coin, put it on a collision layer 2, then put coin on mask collision layer 2 so that it can interact with player. Add queue_free code to remove coin from scene.\
+\
+Dying. Limit camera view when falling. Highlight camera in upper left, limit on right. Use ruller to measure from the base line (middle red line) the distance you want the camera to stop at, and type the number in the bottom box.\
+\
+Killzone, create new scene and area2d node. Change collision mask to 2 because you only want to check for player. Bring it into the level pyramid pressing the link button or dragging it in. Then add a collision shape as a child and select world bounty. Can move kill zone using move tool. Click on kill zone scene and create new script. Create a body entered signal when selecting kill zone in upper left. Can bring you died. To slow things down, add a timer node to kill zone. In the inspector, set it to .6 seconds. Drag timer into code by dragging and pressing command. This allows to access timer node in the code.  Add timer.start, then add \'93timeout\'94 signal. Add get_tree.\
+\
+Create another tilemaplayer for background. Name it and mid ground. Use rectangle tool. to paint the background\
+\
+Create enemy. Add new scene. Can be ordinary 2d scene because it does not need to collide. Create animated sprite. Add in green slime sprites. Add the kill zone to enemy by pressing link button at top left. At a collision rectangle and fit.\
+\
+Add a default scrip to the slime scene. Process function works every frame. Multiply added pixel by delta to account from varying frame rates. Add recast node to slime to detect collisions.\
+\
+Video 51:07}
